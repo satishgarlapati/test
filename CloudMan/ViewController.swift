@@ -31,13 +31,13 @@ class ViewController: UIViewController {
         self.view.endEditing(true)
         self.viResponse.isHidden = true
 
-        if (textField.text?.characters.count)! > 0
-        {
-            if  validateUrl(urlString: textField.text) == false {
-                showAlertViewController()
-                return
-            }
-        }
+//        if (textField.text?.characters.count)! > 0
+//        {
+//            if  validateUrl(urlString: textField.text) == false {
+//                showAlertViewController()
+//                return
+//            }
+//        }
         JSONModel.sharedInstance.makeHTTPGetRequest(path: textField.text!, onCompletion: { (data,executionTime, err) in
             
             if err != nil

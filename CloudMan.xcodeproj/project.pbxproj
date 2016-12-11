@@ -132,6 +132,7 @@
 				TargetAttributes = {
 					B9A43D3B1DF8EEFF00F39167 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 5J33YAG8CZ;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -348,6 +349,7 @@
 			baseConfigurationReference = 34075D17436D362C8D2DD913 /* Pods-CloudMan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5J33YAG8CZ;
 				INFOPLIST_FILE = CloudMan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blackmoon.CloudMan;
@@ -361,6 +363,7 @@
 			baseConfigurationReference = CEBF7FAA49924A6EA79FFEEC /* Pods-CloudMan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5J33YAG8CZ;
 				INFOPLIST_FILE = CloudMan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.blackmoon.CloudMan;
