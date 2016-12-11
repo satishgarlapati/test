@@ -64,12 +64,12 @@ class ViewController: UIViewController {
                     self.responseBodyTextView.text = dataString
                 }
             }
-            let jsonData: NSData = data as! NSData
-            print("The size is length:\(jsonData.length)")
-            print("The size is KB    :\(Double(jsonData.length)/1024.00)")
-            print("The Time is       :\(CGFloat(executionTime))")
-            let json:JSON = JSON(data: jsonData as Data)
-            print("The content is :\(json)")
+//            let jsonData: NSData = data as! NSData
+//            print("The size is length:\(jsonData.length)")
+//            print("The size is KB    :\(Double(jsonData.length)/1024.00)")
+//            print("The Time is       :\(CGFloat(executionTime))")
+//            let json:JSON = JSON(data: jsonData as Data)
+//            print("The content is :\(json)")
         })
 
         /*
