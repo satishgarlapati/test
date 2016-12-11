@@ -1,0 +1,409 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A6E467A81DF97C89008CE6DD /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E467A71DF97C89008CE6DD /* HistoryVC.swift */; };
+		B497D9E272FD18DE63B92D80 /* Pods_CloudMan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A058C044060BC0F756E0F1 /* Pods_CloudMan.framework */; };
+		B9A43D401DF8EEFF00F39167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A43D3F1DF8EEFF00F39167 /* AppDelegate.swift */; };
+		B9A43D421DF8EEFF00F39167 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A43D411DF8EEFF00F39167 /* ViewController.swift */; };
+		B9A43D451DF8EEFF00F39167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9A43D431DF8EEFF00F39167 /* Main.storyboard */; };
+		B9A43D481DF8EEFF00F39167 /* CloudMan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B9A43D461DF8EEFF00F39167 /* CloudMan.xcdatamodeld */; };
+		B9A43D4A1DF8EEFF00F39167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9A43D491DF8EEFF00F39167 /* Assets.xcassets */; };
+		B9A43D4D1DF8EEFF00F39167 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9A43D4B1DF8EEFF00F39167 /* LaunchScreen.storyboard */; };
+		B9A43D551DF8F72600F39167 /* JSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A43D541DF8F72600F39167 /* JSONModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		34075D17436D362C8D2DD913 /* Pods-CloudMan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudMan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CloudMan/Pods-CloudMan.debug.xcconfig"; sourceTree = "<group>"; };
+		82A058C044060BC0F756E0F1 /* Pods_CloudMan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudMan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6E467A71DF97C89008CE6DD /* HistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
+		B9A43D3C1DF8EEFF00F39167 /* CloudMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9A43D3F1DF8EEFF00F39167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B9A43D411DF8EEFF00F39167 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B9A43D441DF8EEFF00F39167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B9A43D471DF8EEFF00F39167 /* CloudMan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CloudMan.xcdatamodel; sourceTree = "<group>"; };
+		B9A43D491DF8EEFF00F39167 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B9A43D4C1DF8EEFF00F39167 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B9A43D4E1DF8EEFF00F39167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9A43D541DF8F72600F39167 /* JSONModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONModel.swift; sourceTree = "<group>"; };
+		CEBF7FAA49924A6EA79FFEEC /* Pods-CloudMan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudMan.release.xcconfig"; path = "Pods/Target Support Files/Pods-CloudMan/Pods-CloudMan.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B9A43D391DF8EEFF00F39167 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B497D9E272FD18DE63B92D80 /* Pods_CloudMan.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6995E4CF27FB487FF153D477 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				82A058C044060BC0F756E0F1 /* Pods_CloudMan.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6CDA76E5A720FE74D1EE6E09 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				34075D17436D362C8D2DD913 /* Pods-CloudMan.debug.xcconfig */,
+				CEBF7FAA49924A6EA79FFEEC /* Pods-CloudMan.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B9A43D331DF8EEFF00F39167 = {
+			isa = PBXGroup;
+			children = (
+				B9A43D3E1DF8EEFF00F39167 /* CloudMan */,
+				B9A43D3D1DF8EEFF00F39167 /* Products */,
+				6CDA76E5A720FE74D1EE6E09 /* Pods */,
+				6995E4CF27FB487FF153D477 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B9A43D3D1DF8EEFF00F39167 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B9A43D3C1DF8EEFF00F39167 /* CloudMan.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B9A43D3E1DF8EEFF00F39167 /* CloudMan */ = {
+			isa = PBXGroup;
+			children = (
+				B9A43D3F1DF8EEFF00F39167 /* AppDelegate.swift */,
+				B9A43D411DF8EEFF00F39167 /* ViewController.swift */,
+				B9A43D541DF8F72600F39167 /* JSONModel.swift */,
+				B9A43D431DF8EEFF00F39167 /* Main.storyboard */,
+				B9A43D491DF8EEFF00F39167 /* Assets.xcassets */,
+				B9A43D4B1DF8EEFF00F39167 /* LaunchScreen.storyboard */,
+				B9A43D4E1DF8EEFF00F39167 /* Info.plist */,
+				B9A43D461DF8EEFF00F39167 /* CloudMan.xcdatamodeld */,
+				A6E467A71DF97C89008CE6DD /* HistoryVC.swift */,
+			);
+			path = CloudMan;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B9A43D3B1DF8EEFF00F39167 /* CloudMan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9A43D511DF8EEFF00F39167 /* Build configuration list for PBXNativeTarget "CloudMan" */;
+			buildPhases = (
+				DE418B63B2259CB7C737630E /* [CP] Check Pods Manifest.lock */,
+				B9A43D381DF8EEFF00F39167 /* Sources */,
+				B9A43D391DF8EEFF00F39167 /* Frameworks */,
+				B9A43D3A1DF8EEFF00F39167 /* Resources */,
+				A844BAE188BF7044C306239D /* [CP] Embed Pods Frameworks */,
+				83FA64A0FB60CDB4DA135930 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CloudMan;
+			productName = CloudMan;
+			productReference = B9A43D3C1DF8EEFF00F39167 /* CloudMan.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B9A43D341DF8EEFF00F39167 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Satish Garlapati";
+				TargetAttributes = {
+					B9A43D3B1DF8EEFF00F39167 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = B9A43D371DF8EEFF00F39167 /* Build configuration list for PBXProject "CloudMan" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B9A43D331DF8EEFF00F39167;
+			productRefGroup = B9A43D3D1DF8EEFF00F39167 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B9A43D3B1DF8EEFF00F39167 /* CloudMan */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B9A43D3A1DF8EEFF00F39167 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9A43D4D1DF8EEFF00F39167 /* LaunchScreen.storyboard in Resources */,
+				B9A43D4A1DF8EEFF00F39167 /* Assets.xcassets in Resources */,
+				B9A43D451DF8EEFF00F39167 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		83FA64A0FB60CDB4DA135930 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CloudMan/Pods-CloudMan-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A844BAE188BF7044C306239D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CloudMan/Pods-CloudMan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE418B63B2259CB7C737630E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B9A43D381DF8EEFF00F39167 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9A43D421DF8EEFF00F39167 /* ViewController.swift in Sources */,
+				A6E467A81DF97C89008CE6DD /* HistoryVC.swift in Sources */,
+				B9A43D551DF8F72600F39167 /* JSONModel.swift in Sources */,
+				B9A43D481DF8EEFF00F39167 /* CloudMan.xcdatamodeld in Sources */,
+				B9A43D401DF8EEFF00F39167 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B9A43D431DF8EEFF00F39167 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B9A43D441DF8EEFF00F39167 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B9A43D4B1DF8EEFF00F39167 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B9A43D4C1DF8EEFF00F39167 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B9A43D4F1DF8EEFF00F39167 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B9A43D501DF8EEFF00F39167 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B9A43D521DF8EEFF00F39167 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34075D17436D362C8D2DD913 /* Pods-CloudMan.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CloudMan/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.blackmoon.CloudMan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		B9A43D531DF8EEFF00F39167 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEBF7FAA49924A6EA79FFEEC /* Pods-CloudMan.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CloudMan/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.blackmoon.CloudMan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B9A43D371DF8EEFF00F39167 /* Build configuration list for PBXProject "CloudMan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9A43D4F1DF8EEFF00F39167 /* Debug */,
+				B9A43D501DF8EEFF00F39167 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B9A43D511DF8EEFF00F39167 /* Build configuration list for PBXNativeTarget "CloudMan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B9A43D521DF8EEFF00F39167 /* Debug */,
+				B9A43D531DF8EEFF00F39167 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B9A43D461DF8EEFF00F39167 /* CloudMan.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B9A43D471DF8EEFF00F39167 /* CloudMan.xcdatamodel */,
+			);
+			currentVersion = B9A43D471DF8EEFF00F39167 /* CloudMan.xcdatamodel */;
+			path = CloudMan.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B9A43D341DF8EEFF00F39167 /* Project object */;
+}

@@ -1,0 +1,6 @@
+framework module Pods_CloudMan {
+  umbrella header "Pods-CloudMan-umbrella.h"
+
+  export *
+  module * { export * }
+}
