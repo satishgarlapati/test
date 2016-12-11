@@ -30,10 +30,7 @@ class ViewController: UIViewController {
     @IBAction func getTheDetailsBtn(_ sender: Any) {
         self.view.endEditing(true)
         self.viResponse.isHidden = true
-//        if (textField.text?.characters.count)! == 0 {
-//            showAlertViewController()
-//            return
-//        }
+
         if (textField.text?.characters.count)! > 0
         {
             if  validateUrl(urlString: textField.text) == false {
