@@ -9,16 +9,16 @@
 import UIKit
 import SwiftyJSON
 
-typealias ServiceResponse = (Any,CFTimeInterval, NSError?) -> Void
+typealias ServiceResponse = (Response) -> Void
 
 class JSONModel: NSObject {
     static let sharedInstance = JSONModel()
     
     var baseURL = "https://api.weather.com/v3/location/point?geocode=37.556111,126.91&language=en&format=json&apiKey=3d498bd0777076fb2aa967aa67114c7e"
     
-    func getRandomUser(onCompletion: @escaping (Any,CFTimeInterval, NSError?) -> Void) {
-        makeHTTPGetRequest(path: baseURL, onCompletion: { data,executionTime, err in
-            onCompletion(data,executionTime, err )
+    func getRandomUser(onCompletion: @escaping (Response) -> Void) {
+        makeHTTPGetRequest(path: baseURL, onCompletion: { responceObj in
+            onCompletion(responceObj)
         })
     }
     
@@ -35,11 +35,16 @@ class JSONModel: NSObject {
         let start = CFAbsoluteTimeGetCurrent()
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
             let executionTime = CFAbsoluteTimeGetCurrent() - start
+            
+            let httpResponse = response as! HTTPURLResponse
+            //print("error \(httpResponse.statusCode)")
             if let jsonData = data {
-                //let json:JSON = JSON(data: jsonData)
-                onCompletion(jsonData, executionTime,  error as NSError?)
+                let responceObj = Response(jsonData: jsonData,executionTime: executionTime,httpStatusCode: httpResponse.statusCode,error: nil)
+                onCompletion(responceObj)
+                //
             } else {
-                onCompletion(JSON.null,executionTime, error as NSError?)
+                let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpStatusCode: httpResponse.statusCode,error: error as! NSError)
+                onCompletion(responceObj)
             }
         })
         task.resume()
@@ -61,18 +66,37 @@ class JSONModel: NSObject {
             
             let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
                 let executionTime = CFAbsoluteTimeGetCurrent() - start
+                let httpResponse = response as! HTTPURLResponse
                 if let jsonData = data {
                     //let json:JSON = JSON(data: jsonData)
-                    onCompletion(jsonData, executionTime,  error as NSError?)
+                    let responceObj = Response(jsonData: jsonData,executionTime: executionTime,httpStatusCode: httpResponse.statusCode,error: error as! NSError)
+                    onCompletion(responceObj)
                 } else {
-                    onCompletion(JSON.null, executionTime,  error as NSError?)
+                    let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpStatusCode: 200,error: error as! NSError)
+                    onCompletion(responceObj)
+
                 }
             })
             task.resume()
         } catch {
             let executionTime = CFAbsoluteTimeGetCurrent() - start
             // Create your personal error
-            onCompletion(JSON.null, executionTime,  error as NSError?)
+            let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpStatusCode: 0,error:nil)
+            onCompletion(responceObj)
+
         }
+    }
+}
+class Response {
+    var jsonData: Any
+    var executionTime: CFTimeInterval
+    var httpStatusCode: NSInteger
+    var error: Any?
+
+    init(jsonData: Any,executionTime: CFTimeInterval,httpStatusCode: NSInteger,error: Any?) {
+        self.jsonData = jsonData
+        self.executionTime = executionTime
+        self.httpStatusCode = httpStatusCode
+        self.error = error
     }
 }
