@@ -12,12 +12,12 @@ let HTTP_STATUS_TEXT = "HTTP Status Code:"
 let EXECUTION_TIME_TEXT = "Execution Time:"
 let RESPONSE_SIZE_TEXT = "Size in KB:"
 let RESPONSE_TEXT = "Response:"
-
 let FAILED_EXECUTION_TIME_TEXT = "Failed, Execution Time:"
 
 
 import UIKit
 import SwiftyJSON
+
 
 class ViewController: UIViewController {
 
@@ -58,35 +58,7 @@ class ViewController: UIViewController {
         JSONModel.sharedInstance.makeHTTPGetRequest(path: textField.text!, onCompletion: { (responseInfo) in
             
             self.updateUIBasedOnResponse(responceObj: responseInfo)
-            /*if err != nil
-            {
-                DispatchQueue.main.async {
-                   self.viResponse.isHidden = false
-                    self.responseTimeLbl.text = String(format: "Failed, Execution Time: %.2f", CGFloat(executionTime))
-                    self.responseSizeLbl.text = ""
-                    self.responseBodyTextView.text = ""
-                }
-                
-            }else
-            {
-                let jsonData: NSData = data as! NSData
-                DispatchQueue.main.async {
-                    self.viResponse.isHidden = false
-                    self.responseTimeLbl.text = String(format: "Execution Time: %.2f", CGFloat(executionTime))
-                    self.responseSizeLbl.text = String(format: "Size in KB: %.2f", Double(jsonData.length)/1024.00)
-                    
-                    let dataString = String(data: jsonData as Data, encoding: String.Encoding.utf8)
-                    self.responseBodyTextView.text = dataString
-                }
-                
-                
-            }*/
-//            let jsonData: NSData = data as! NSData
-//            print("The size is length:\(jsonData.length)")
-//            print("The size is KB    :\(Double(jsonData.length)/1024.00)")
-//            print("The Time is       :\(CGFloat(executionTime))")
-//            let json:JSON = JSON(data: jsonData as Data)
-//            print("The content is :\(json)")
+ 
         })
 
         /*
@@ -111,17 +83,17 @@ class ViewController: UIViewController {
             
             if (responceObj.error == nil && responceObj.httpStatusCode == 0 && responceObj.executionTime == 0)
             {
-                self.requestLbl.text = String(format: "%@ Not Available", REQUEST_TEXT)
-                self.httpStatusLbl.text = String(format: "%@ Not Available", HTTP_STATUS_TEXT)
-                self.responseTimeLbl.text = String(format: "%@ Not Available", EXECUTION_TIME_TEXT)
-                self.responseSizeLbl.text = String(format: "%@ Not Available", RESPONSE_SIZE_TEXT)
-                self.responseBodyTextView.text = String(format: "%@ Not Available", RESPONSE_TEXT)
+                self.requestLbl.attributedText = self.createAttrString(string: String(format: "%@ Not Available", REQUEST_TEXT), boldStr: REQUEST_TEXT)
+                self.httpStatusLbl.attributedText = self.createAttrString(string: String(format: "%@ Not Available", HTTP_STATUS_TEXT), boldStr: HTTP_STATUS_TEXT)
+                self.responseTimeLbl.attributedText = self.createAttrString(string: String(format: "%@ Not Available", EXECUTION_TIME_TEXT), boldStr: EXECUTION_TIME_TEXT)
+                self.responseSizeLbl.attributedText = self.createAttrString(string: String(format: "%@ Not Available", RESPONSE_SIZE_TEXT), boldStr: RESPONSE_SIZE_TEXT)
+                self.responseBodyTextView.attributedText = self.createAttrString(string: String(format: "%@ Not Available", RESPONSE_TEXT), boldStr: RESPONSE_TEXT)
                 return
             }
             
             if responceObj.error != nil
             {
-                self.requestLbl.text = self.textField.text!
+                self.requestLbl.text = String(format: "%@ %@", REQUEST_TEXT ,self.textField.text!)
                 self.httpStatusLbl.text = String(format: "%@ %d", HTTP_STATUS_TEXT, responceObj.httpStatusCode)
 
                 self.responseTimeLbl.text = String(format: "%@ %.2f", FAILED_EXECUTION_TIME_TEXT, CGFloat(responceObj.executionTime))
@@ -130,7 +102,7 @@ class ViewController: UIViewController {
                 
             }else
             {
-                self.requestLbl.text = self.textField.text!
+                self.requestLbl.text = String(format: "%@ %@", REQUEST_TEXT ,self.textField.text!)
                 self.httpStatusLbl.text = String(format: "%@ %d", HTTP_STATUS_TEXT, responceObj.httpStatusCode)
 
                 self.responseTimeLbl.text = String(format: "%@ %.2f", EXECUTION_TIME_TEXT ,CGFloat(responceObj.executionTime))
@@ -143,5 +115,14 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    func createAttrString(string:String, boldStr:String) -> NSMutableAttributedString {
+        
+        let attrString = NSMutableAttributedString(string: string);
+        let myAttributes = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 15)]
+        attrString.addAttributes(myAttributes, range: NSMakeRange(0, boldStr.characters.count))
+        return attrString
+    }
+    
 }
 
