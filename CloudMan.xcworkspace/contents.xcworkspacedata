@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CloudMan/DBManager/APIHistory+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:CloudMan/DBManager/APIHistory+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:CloudMan.xcodeproj">
    </FileRef>
    <FileRef

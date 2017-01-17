@@ -113,9 +113,34 @@ class ViewController: UIViewController {
                 self.responseBodyTextView.text = String(format: "%@ %@", RESPONSE_TEXT, dataString!)
                 
             }
+            let alertController = UIAlertController(title: "CloudMan", message: "You can view the API in webview, Do you want to open in webview ?", preferredStyle: .alert)
+            
+            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .default) { action -> Void in
+                //Just dismiss the action sheet
+            }
+            alertController.addAction(cancelAction)
+            
+            let openAction: UIAlertAction = UIAlertAction(title: "Open", style: .destructive) { action -> Void in
+                self.performSegue(withIdentifier: "webviewController", sender:self)
+            }
+            alertController.addAction(openAction)
+            self.present(alertController, animated: true, completion: nil)
+
+            //if !self.canOpenURL(url: self.textField.text!){}
+            
         }
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is webviewController {
+            let dVC = segue.destination as! webviewController
+            dVC.apiURL = textField.text!
+        }
+    }
+    func canOpenURL(url: String ) -> Bool {
+        let urlRegEx = "^http(?:s)?://(?:w{3}\\.)?(?!w{3}\\.)(?:[\\p{L}a-zA-Z0-9\\-]+\\.){1,}(?:[\\p{L}a-zA-Z]{2,})/(?:\\S*)?$"
+        let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegEx)
+        return urlTest.evaluate(with: url)
+    }
     func createAttrString(string:String, boldStr:String) -> NSMutableAttributedString {
         
         let attrString = NSMutableAttributedString(string: string);

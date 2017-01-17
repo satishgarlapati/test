@@ -40,10 +40,12 @@ class JSONModel: NSObject {
             //print("error \(httpResponse.statusCode)")
             if let jsonData = data {
                 let responceObj = Response(jsonData: jsonData,executionTime: executionTime,httpStatusCode: httpResponse.statusCode,error: nil)
+                DBManager.sharedInstance.insertOrUpdateAPI(apiURL: urlStr, isSuccess: true)
                 onCompletion(responceObj)
                 //
             } else {
                 let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpStatusCode: httpResponse.statusCode,error: error as! NSError)
+                DBManager.sharedInstance.insertOrUpdateAPI(apiURL: urlStr, isSuccess: false)
                 onCompletion(responceObj)
             }
         })

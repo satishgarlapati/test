@@ -9,16 +9,11 @@
 import UIKit
 import CoreData
 
-class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var viTblHistory: UITableView!
-
-    
     var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
     
-    //var arrAPIHistory : [String]!
-    
-    var arrAPIHistory : [String] = ["API History 1", "API History 2", "API History 3"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,28 +22,47 @@ class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
         //self.navigationItem.rightBarButtonItem = strava
         //self.title = "Home"
         viTblHistory.tableFooterView = UIView()
-        
-        
         viTblHistory.dataSource = self
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print("An error occurred")
+        }
     }
+    
+    lazy var fetchedResultsController: NSFetchedResultsController<APIHistory> = {
+        let fetchRequest: NSFetchRequest<APIHistory> = APIHistory.fetchRequest()
+        let fetchSort = NSSortDescriptor(key: "onDate", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))
+        fetchRequest.sortDescriptors = [fetchSort]
+        let fRC : NSFetchedResultsController  = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        fRC.delegate = self
+        return fRC
+    }()
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return arrAPIHistory.count
+        if let sections = fetchedResultsController.sections {
+            let currentSection = sections[section]
+            return currentSection.numberOfObjects
+        }
+        return 0
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
         tableView.deselectRow(at: indexPath, animated: true)
-
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for:indexPath)
-        cell.textLabel?.text = arrAPIHistory[indexPath.row]
+        let apiHistory = fetchedResultsController.object(at:indexPath)
+        
+        cell.textLabel?.text = apiHistory.apiURL
+        cell.detailTextLabel?.text = apiHistory.isSuccess ? "Success" : "Failed"
         return cell
     }
     
