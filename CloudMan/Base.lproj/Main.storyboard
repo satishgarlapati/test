@@ -12,7 +12,7 @@
         <scene sceneID="2Wi-cG-AOF">
             <objects>
                 <navigationController id="N62-xn-6pu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Jgt-Rg-dd5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Jgt-Rg-dd5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -113,30 +113,44 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6K-iO-JPZ">
-                                        <rect key="frame" x="5" y="80" width="365" height="453"/>
+                                        <rect key="frame" x="5" y="80" width="365" height="413"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4j-Ns-d9l">
+                                        <rect key="frame" x="0.0" y="498" width="375" height="40"/>
+                                        <color key="backgroundColor" red="0.0" green="0.43137254901960786" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="bbI-1V-wDj"/>
+                                        </constraints>
+                                        <state key="normal" title="Open in Web Page"/>
+                                        <connections>
+                                            <action selector="showApiInWebView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jv3-mT-biJ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="M6K-iO-JPZ" secondAttribute="trailing" constant="5" id="3fH-JF-z7m"/>
                                     <constraint firstAttribute="trailing" secondItem="6nk-x6-0jF" secondAttribute="trailing" constant="10" id="4bw-73-Fhb"/>
                                     <constraint firstItem="qY1-De-cUk" firstAttribute="leading" secondItem="UYb-qG-wFz" secondAttribute="leading" constant="10" id="7PK-KW-yeW"/>
+                                    <constraint firstAttribute="trailing" secondItem="v4j-Ns-d9l" secondAttribute="trailing" id="Aeo-kd-FOB"/>
                                     <constraint firstAttribute="trailing" secondItem="CvS-aj-A0c" secondAttribute="trailing" constant="10" id="By8-YR-gGe"/>
                                     <constraint firstItem="1Av-bD-SXz" firstAttribute="top" secondItem="UYb-qG-wFz" secondAttribute="top" id="CuS-Jp-PHV"/>
                                     <constraint firstItem="CvS-aj-A0c" firstAttribute="top" secondItem="qY1-De-cUk" secondAttribute="bottom" id="DBv-sS-vtJ"/>
                                     <constraint firstItem="CvS-aj-A0c" firstAttribute="leading" secondItem="UYb-qG-wFz" secondAttribute="leading" constant="10" id="IU5-Hz-DlH"/>
                                     <constraint firstItem="6nk-x6-0jF" firstAttribute="leading" secondItem="UYb-qG-wFz" secondAttribute="leading" constant="10" id="Tcz-Sv-YjQ"/>
                                     <constraint firstAttribute="trailing" secondItem="1Av-bD-SXz" secondAttribute="trailing" constant="10" id="YVl-Ba-EwJ"/>
-                                    <constraint firstAttribute="bottom" secondItem="M6K-iO-JPZ" secondAttribute="bottom" constant="5" id="akc-HL-v65"/>
                                     <constraint firstItem="1Av-bD-SXz" firstAttribute="leading" secondItem="UYb-qG-wFz" secondAttribute="leading" constant="10" id="dCw-AE-19w"/>
                                     <constraint firstAttribute="trailing" secondItem="qY1-De-cUk" secondAttribute="trailing" constant="10" id="gfE-hq-n1W"/>
                                     <constraint firstItem="qY1-De-cUk" firstAttribute="top" secondItem="1Av-bD-SXz" secondAttribute="bottom" id="hcz-o1-qXu"/>
+                                    <constraint firstItem="v4j-Ns-d9l" firstAttribute="top" secondItem="M6K-iO-JPZ" secondAttribute="bottom" constant="5" id="qO5-p1-7in"/>
+                                    <constraint firstItem="v4j-Ns-d9l" firstAttribute="leading" secondItem="UYb-qG-wFz" secondAttribute="leading" id="tmU-2e-dlL"/>
                                     <constraint firstItem="M6K-iO-JPZ" firstAttribute="leading" secondItem="UYb-qG-wFz" secondAttribute="leading" constant="5" id="whB-tb-G4B"/>
                                     <constraint firstItem="M6K-iO-JPZ" firstAttribute="top" secondItem="6nk-x6-0jF" secondAttribute="bottom" id="xYK-Ev-saw"/>
                                     <constraint firstItem="6nk-x6-0jF" firstAttribute="top" secondItem="CvS-aj-A0c" secondAttribute="bottom" id="xbC-R6-2zU"/>
+                                    <constraint firstAttribute="bottom" secondItem="v4j-Ns-d9l" secondAttribute="bottom" id="yqa-4E-1ST"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -160,6 +174,7 @@
                     <connections>
                         <outlet property="getBtn" destination="zC6-Ju-cXV" id="Gan-1e-3Wj"/>
                         <outlet property="httpStatusLbl" destination="qY1-De-cUk" id="bnE-XY-aqL"/>
+                        <outlet property="openWebBtnHeight" destination="bbI-1V-wDj" id="AvI-X5-3ij"/>
                         <outlet property="requestLbl" destination="1Av-bD-SXz" id="C7I-1O-Kzs"/>
                         <outlet property="responseBodyTextView" destination="M6K-iO-JPZ" id="wVp-FA-coY"/>
                         <outlet property="responseSizeLbl" destination="6nk-x6-0jF" id="LDV-Bk-7EV"/>

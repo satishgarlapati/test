@@ -19,7 +19,7 @@ import UIKit
 import SwiftyJSON
 
 
-class ViewController: UIViewController {
+class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectionDelegate {
 
     @IBOutlet weak var viResponse: UIView!
     @IBOutlet weak var textField: UITextField!
@@ -31,18 +31,27 @@ class ViewController: UIViewController {
     @IBOutlet weak var responseSizeLbl: UILabel!
     @IBOutlet weak var responseBodyTextView: UITextView!
     
+    @IBOutlet weak var openWebBtnHeight: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let emptyObj = Response(jsonData: JSON.null,executionTime: 0,httpStatusCode: 0,error: nil)
         updateUIBasedOnResponse(responceObj: emptyObj)
-
-        
+        textField.delegate = self;
+        openWebBtnHeight.constant = 0;
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     func validateUrl (urlString: String?) -> Bool {
         let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
         return NSPredicate(format: "SELF MATCHES %@", urlRegEx).evaluate(with: urlString)
+    }
+    @IBAction func showApiInWebView(_ sender: UIButton) {
+        
+        self.performSegue(withIdentifier: "webviewController", sender:self)
+        
     }
     @IBAction func getTheDetailsBtn(_ sender: Any) {
         self.view.endEditing(true)
@@ -99,7 +108,7 @@ class ViewController: UIViewController {
                 self.responseTimeLbl.text = String(format: "%@ %.2f", FAILED_EXECUTION_TIME_TEXT, CGFloat(responceObj.executionTime))
                 self.responseSizeLbl.text = ""
                 self.responseBodyTextView.text = ""
-                
+                self.openWebBtnHeight.constant = 0;
             }else
             {
                 self.requestLbl.text = String(format: "%@ %@", REQUEST_TEXT ,self.textField.text!)
@@ -111,8 +120,9 @@ class ViewController: UIViewController {
                 
                 let dataString = String(data: jsonData as Data, encoding: String.Encoding.utf8)
                 self.responseBodyTextView.text = String(format: "%@ %@", RESPONSE_TEXT, dataString!)
+                self.openWebBtnHeight.constant = 40;
                 
-            }
+            }/*
             let alertController = UIAlertController(title: "CloudMan", message: "You can view the API in webview, Do you want to open in webview ?", preferredStyle: .alert)
             
             let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .default) { action -> Void in
@@ -125,7 +135,7 @@ class ViewController: UIViewController {
             }
             alertController.addAction(openAction)
             self.present(alertController, animated: true, completion: nil)
-
+            */
             //if !self.canOpenURL(url: self.textField.text!){}
             
         }
@@ -134,6 +144,9 @@ class ViewController: UIViewController {
         if segue.destination is webviewController {
             let dVC = segue.destination as! webviewController
             dVC.apiURL = textField.text!
+        }else if segue.destination is HistoryVC {
+            let dVC = segue.destination as! HistoryVC
+            dVC.delegate = self
         }
     }
     func canOpenURL(url: String ) -> Bool {
@@ -148,6 +161,15 @@ class ViewController: UIViewController {
         attrString.addAttributes(myAttributes, range: NSMakeRange(0, boldStr.characters.count))
         return attrString
     }
-    
+    func goForSelectedAPI(_ apiURL: String) {
+        textField.text = apiURL
+        openWebBtnHeight.constant = 0;
+
+    }
+    //Mark -- TextView Delegate
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+        self.openWebBtnHeight.constant = 0;
+    }
 }
 

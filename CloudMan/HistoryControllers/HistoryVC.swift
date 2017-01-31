@@ -9,11 +9,16 @@
 import UIKit
 import CoreData
 
+protocol HistoryApiSelectionDelegate {
+    func goForSelectedAPI(_ apiURL: String)
+}
+
 class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var viTblHistory: UITableView!
     var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
-    
+
+    var delegate : HistoryApiSelectionDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +37,7 @@ class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NS
     
     lazy var fetchedResultsController: NSFetchedResultsController<APIHistory> = {
         let fetchRequest: NSFetchRequest<APIHistory> = APIHistory.fetchRequest()
-        let fetchSort = NSSortDescriptor(key: "onDate", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))
+        let fetchSort = NSSortDescriptor(key: "onDate", ascending: false, selector: #selector(NSString.caseInsensitiveCompare))
         fetchRequest.sortDescriptors = [fetchSort]
         let fRC : NSFetchedResultsController  = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         fRC.delegate = self
@@ -51,8 +56,13 @@ class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NS
         return 0
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        
         tableView.deselectRow(at: indexPath, animated: true)
+
+        if let delegate = delegate {
+            let apiHistory = fetchedResultsController.object(at:indexPath)
+            delegate.goForSelectedAPI(apiHistory.apiURL!)
+            _ = navigationController?.popViewController(animated: true)
+        }
         
     }
     
@@ -65,7 +75,6 @@ class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NS
         cell.detailTextLabel?.text = apiHistory.isSuccess ? "Success" : "Failed"
         return cell
     }
-    
     
 }
 
