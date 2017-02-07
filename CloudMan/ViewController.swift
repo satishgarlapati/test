@@ -118,8 +118,14 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
                 let jsonData: NSData = responceObj.jsonData as! NSData
                 self.responseSizeLbl.text = String(format: "%@ %.2f", RESPONSE_SIZE_TEXT, Double(jsonData.length)/1024.00)
                 
-                let dataString = String(data: jsonData as Data, encoding: String.Encoding.utf8)
-                self.responseBodyTextView.text = String(format: "%@ %@", RESPONSE_TEXT, dataString!)
+                let dataString : String? = String(data: jsonData as Data, encoding: String.Encoding.utf8)
+                
+                guard let str = dataString else{
+                    self.responseBodyTextView.text = String(format: "%@ %@", RESPONSE_TEXT, "RESPONSE IS NOT HTML")
+                    self.openWebBtnHeight.constant = 40;
+                    return
+                }
+                self.responseBodyTextView.text = String(format: "%@ %@", RESPONSE_TEXT, str)
                 self.openWebBtnHeight.constant = 40;
                 
             }/*
