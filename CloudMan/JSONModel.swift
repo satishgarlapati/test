@@ -28,6 +28,8 @@ class JSONModel: NSObject {
         var urlStr: String = path
         if path.characters.count == 0 {
             urlStr = baseURL
+        }else if !path.contains("http") {
+            urlStr = "http://" + path
         }
         let request = NSMutableURLRequest(url: NSURL(string: urlStr)! as URL)
         
@@ -39,12 +41,12 @@ class JSONModel: NSObject {
             let httpResponse = response as! HTTPURLResponse
             //print("error \(httpResponse.statusCode)")
             if let jsonData = data {
-                let responceObj = Response(jsonData: jsonData,executionTime: executionTime,httpStatusCode: httpResponse.statusCode,error: nil)
+                let responceObj = Response(jsonData: jsonData,executionTime: executionTime,httpURLResponse: httpResponse,error: nil)
                 DBManager.sharedInstance.insertOrUpdateAPI(apiURL: urlStr, isSuccess: true)
                 onCompletion(responceObj)
                 //
             } else {
-                let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpStatusCode: httpResponse.statusCode,error: error as! NSError)
+                let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpURLResponse: httpResponse,error: error as! NSError)
                 DBManager.sharedInstance.insertOrUpdateAPI(apiURL: urlStr, isSuccess: false)
                 onCompletion(responceObj)
             }
@@ -71,10 +73,10 @@ class JSONModel: NSObject {
                 let httpResponse = response as! HTTPURLResponse
                 if let jsonData = data {
                     //let json:JSON = JSON(data: jsonData)
-                    let responceObj = Response(jsonData: jsonData,executionTime: executionTime,httpStatusCode: httpResponse.statusCode,error: error as! NSError)
+                    let responceObj = Response(jsonData: jsonData,executionTime: executionTime,httpURLResponse: httpResponse,error: error as! NSError)
                     onCompletion(responceObj)
                 } else {
-                    let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpStatusCode: 200,error: error as! NSError)
+                    let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpURLResponse: httpResponse,error: error as! NSError)
                     onCompletion(responceObj)
 
                 }
@@ -83,7 +85,7 @@ class JSONModel: NSObject {
         } catch {
             let executionTime = CFAbsoluteTimeGetCurrent() - start
             // Create your personal error
-            let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpStatusCode: 0,error:nil)
+            let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpURLResponse:HTTPURLResponse(),error:nil)
             onCompletion(responceObj)
 
         }
@@ -92,13 +94,14 @@ class JSONModel: NSObject {
 class Response {
     var jsonData: Any
     var executionTime: CFTimeInterval
-    var httpStatusCode: NSInteger
+    //var httpStatusCode: NSInteger
+    var httpURLResponse : HTTPURLResponse
     var error: Any?
 
-    init(jsonData: Any,executionTime: CFTimeInterval,httpStatusCode: NSInteger,error: Any?) {
+    init(jsonData: Any,executionTime: CFTimeInterval,httpURLResponse: HTTPURLResponse,error: Any?) {
         self.jsonData = jsonData
         self.executionTime = executionTime
-        self.httpStatusCode = httpStatusCode
+        self.httpURLResponse = httpURLResponse
         self.error = error
     }
 }

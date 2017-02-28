@@ -21,23 +21,31 @@ class DBManager: NSObject {
         
         let appDel = UIApplication.shared.delegate as! AppDelegate
         
-        let history = NSEntityDescription.insertNewObject(forEntityName: "APIHistory", into: appDel.managedObjectContext) as! APIHistory
-        history.apiURL = apiURL
-        history.isSuccess = isSuccess
-        history.onDate = NSDate()
-        do{
-            try appDel.managedObjectContext.save()
-        }catch let error as NSError{
-            print("error saving core data: \(error)")
+        let pred = NSPredicate(format: "apiURL == %@",apiURL)
+        if getAPIHistory(predicate: pred).count == 0
+        {
+            let history = NSEntityDescription.insertNewObject(forEntityName: "APIHistory", into: appDel.managedObjectContext) as! APIHistory
+            history.apiURL = apiURL
+            history.isSuccess = isSuccess
+            history.onDate = NSDate()
+            do{
+                try appDel.managedObjectContext.save()
+            }catch let error as NSError{
+                print("error saving core data: \(error)")
+            }
         }
+        
     }
-    func getAPIHistory() -> Array<APIHistory> {
+    func getAPIHistory(predicate:NSPredicate?) -> Array<APIHistory> {
         let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
         let fetchRequest: NSFetchRequest<APIHistory> = APIHistory.fetchRequest()
         let entityDescription = NSEntityDescription.entity(forEntityName: "APIHistory", in: context)
         
         fetchRequest.entity = entityDescription
-        //fetchRequest.predicate = NSPredicate(format: "raceID == %@",raceID)
+        if predicate != nil{
+            fetchRequest.predicate = predicate//NSPredicate(format: "raceID == %@",raceID)
+
+        }
         
         do {
             let result = try context.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
@@ -46,6 +54,18 @@ class DBManager: NSObject {
             let fetchError = error as NSError
             print(fetchError)
             return Array()
+        }
+    }
+    func deleteRecordFromAPIHistory(objectToDelete: APIHistory) -> Bool {
+        let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
+        do {
+            context.delete(objectToDelete)
+            try context.save()
+            return true
+        } catch {
+            let saveError = error as NSError
+            print(saveError)
+            return false
         }
     }
      /*

@@ -37,7 +37,7 @@ class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NS
     
     lazy var fetchedResultsController: NSFetchedResultsController<APIHistory> = {
         let fetchRequest: NSFetchRequest<APIHistory> = APIHistory.fetchRequest()
-        let fetchSort = NSSortDescriptor(key: "onDate", ascending: false, selector: #selector(NSString.caseInsensitiveCompare))
+        let fetchSort = NSSortDescriptor(key: "onDate", ascending: false)
         fetchRequest.sortDescriptors = [fetchSort]
         let fRC : NSFetchedResultsController  = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         fRC.delegate = self
@@ -75,6 +75,42 @@ class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NS
         cell.detailTextLabel?.text = apiHistory.isSuccess ? "Success" : "Failed"
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            
+            let apiHistory = fetchedResultsController.object(at:indexPath)
+            let isDeleted = DBManager.sharedInstance.deleteRecordFromAPIHistory(objectToDelete: apiHistory)
+            if isDeleted{
+                fetchedResultsController.fetchRequest.predicate = nil;
+                do {
+                    try fetchedResultsController.performFetch()
+                    viTblHistory.reloadData()
+                } catch {
+                    print("An error occurred")
+                }
+            }
+            
+           
+        }
+    }
 }
+/*
+ let alertController = UIAlertController(title: "CloudMan", message: "You can view the API in webview, Do you want to open in webview ?", preferredStyle: .alert)
+ 
+ let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .default) { action -> Void in
+ //Just dismiss the action sheet
+ }
+ alertController.addAction(cancelAction)
+ 
+ let openAction: UIAlertAction = UIAlertAction(title: "Open", style: .destructive) { action -> Void in
+ self.performSegue(withIdentifier: "webviewController", sender:self)
+ }
+ alertController.addAction(openAction)
+ self.present(alertController, animated: true, completion: nil)
+ */
+//if !self.canOpenURL(url: self.textField.text!){}
 
