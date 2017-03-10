@@ -2,7 +2,7 @@
 //  APIHistory+CoreDataProperties.swift
 //  
 //
-//  Created by Geetha Balu on 17/01/17.
+//  Created by Satish Garlapati on 01/17/17.
 //
 //  This file was automatically generated and should not be edited.
 //

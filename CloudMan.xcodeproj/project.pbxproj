@@ -11,6 +11,9 @@
 		A66C0B241E2E93B1007D5A84 /* webviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66C0B231E2E93B1007D5A84 /* webviewController.swift */; };
 		A6FFFE6C1E2E84DD00BB2962 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FFFE6B1E2E84DD00BB2962 /* DBManager.swift */; };
 		B497D9E272FD18DE63B92D80 /* Pods_CloudMan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A058C044060BC0F756E0F1 /* Pods_CloudMan.framework */; };
+		B62126E31E71E81200CAB65E /* Client1.Json in Resources */ = {isa = PBXBuildFile; fileRef = B62126E21E71E81200CAB65E /* Client1.Json */; };
+		B62126E61E7247AC00CAB65E /* Client2.Json in Resources */ = {isa = PBXBuildFile; fileRef = B62126E51E7247AC00CAB65E /* Client2.Json */; };
+		B62126E81E726BB100CAB65E /* Client3.Json in Resources */ = {isa = PBXBuildFile; fileRef = B62126E71E726BB100CAB65E /* Client3.Json */; };
 		B9A43D401DF8EEFF00F39167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A43D3F1DF8EEFF00F39167 /* AppDelegate.swift */; };
 		B9A43D421DF8EEFF00F39167 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A43D411DF8EEFF00F39167 /* ViewController.swift */; };
 		B9A43D451DF8EEFF00F39167 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9A43D431DF8EEFF00F39167 /* Main.storyboard */; };
@@ -26,6 +29,9 @@
 		A63F2C751E2E8A1600E2D097 /* HistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
 		A66C0B231E2E93B1007D5A84 /* webviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = webviewController.swift; sourceTree = "<group>"; };
 		A6FFFE6B1E2E84DD00BB2962 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		B62126E21E71E81200CAB65E /* Client1.Json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Client1.Json; path = HistoryControllers/Client1.Json; sourceTree = "<group>"; };
+		B62126E51E7247AC00CAB65E /* Client2.Json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Client2.Json; sourceTree = "<group>"; };
+		B62126E71E726BB100CAB65E /* Client3.Json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Client3.Json; sourceTree = "<group>"; };
 		B9A43D3C1DF8EEFF00F39167 /* CloudMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9A43D3F1DF8EEFF00F39167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9A43D411DF8EEFF00F39167 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -83,11 +89,27 @@
 			path = DBManager;
 			sourceTree = "<group>";
 		};
+		B62126E41E71E82A00CAB65E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B9A43D491DF8EEFF00F39167 /* Assets.xcassets */,
+				B62126E21E71E81200CAB65E /* Client1.Json */,
+				B62126E51E7247AC00CAB65E /* Client2.Json */,
+				B62126E71E726BB100CAB65E /* Client3.Json */,
+				B9A43D4B1DF8EEFF00F39167 /* LaunchScreen.storyboard */,
+				B9A43D4E1DF8EEFF00F39167 /* Info.plist */,
+				B9A43D461DF8EEFF00F39167 /* CloudMan.xcdatamodeld */,
+			);
+			name = "Supporting Files";
+			path = CloudMan;
+			sourceTree = "<group>";
+		};
 		B9A43D331DF8EEFF00F39167 = {
 			isa = PBXGroup;
 			children = (
 				B9A43D3E1DF8EEFF00F39167 /* CloudMan */,
 				B9A43D3D1DF8EEFF00F39167 /* Products */,
+				B62126E41E71E82A00CAB65E /* Supporting Files */,
 				6CDA76E5A720FE74D1EE6E09 /* Pods */,
 				6995E4CF27FB487FF153D477 /* Frameworks */,
 			);
@@ -110,10 +132,6 @@
 				B9A43D411DF8EEFF00F39167 /* ViewController.swift */,
 				B9A43D541DF8F72600F39167 /* JSONModel.swift */,
 				B9A43D431DF8EEFF00F39167 /* Main.storyboard */,
-				B9A43D491DF8EEFF00F39167 /* Assets.xcassets */,
-				B9A43D4B1DF8EEFF00F39167 /* LaunchScreen.storyboard */,
-				B9A43D4E1DF8EEFF00F39167 /* Info.plist */,
-				B9A43D461DF8EEFF00F39167 /* CloudMan.xcdatamodeld */,
 				A66C0B231E2E93B1007D5A84 /* webviewController.swift */,
 			);
 			path = CloudMan;
@@ -182,8 +200,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B62126E31E71E81200CAB65E /* Client1.Json in Resources */,
 				B9A43D4D1DF8EEFF00F39167 /* LaunchScreen.storyboard in Resources */,
+				B62126E61E7247AC00CAB65E /* Client2.Json in Resources */,
 				B9A43D4A1DF8EEFF00F39167 /* Assets.xcassets in Resources */,
+				B62126E81E726BB100CAB65E /* Client3.Json in Resources */,
 				B9A43D451DF8EEFF00F39167 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

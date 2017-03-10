@@ -1,0 +1,33 @@
+{
+    "urlArray":[{
+            "urlID":"1",
+            "urlName":"Southwest",
+            "url":"https://www.southwest.com"
+        },
+        {
+            "urlID":"2",
+            "urlName":"American Airlines",
+            "url":"https://www.aa.com"
+        },
+        {
+            "urlID":"3",
+            "urlName":"United Airlines",
+            "url":"https://www.united.com"
+        },
+        {
+            "urlID":"4",
+            "urlName":"Delta Airlines",
+            "url":"http://www.delta.com"
+        },
+        {
+            "urlID":"5",
+            "urlName":"British Airways",
+            "url":"https://www.britishairways.com"
+        },
+        {
+            "urlID":"6",
+            "urlName":"Turkish Airlines",
+            "url":"http://www.turkishairlines.com"
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+{
+    "urlArray":[{
+            "urlID":"1",
+            "urlName":"Facebook",
+            "url":"https://www.facebook.com"
+        },
+        {
+            "urlID":"2",
+            "urlName":"Gmail",
+            "url":"htpps://www.gmail.com"
+        },
+        {
+            "urlID":"3",
+            "urlName":"Google",
+            "url":"https://www.google.com"
+        },
+        {
+            "urlID":"4",
+            "urlName":"Youtube",
+            "url":"https://www.youtube.com"
+        },
+        {
+            "urlID":"5",
+            "urlName":"Weather",
+            "url":"https://api.weather.com"
+        },
+        {
+            "urlID":"6",
+            "urlName":"Yahoo",
+            "url":"https://www.yahoo.com"
+        }
+    ]
+}

@@ -12,15 +12,10 @@ import SwiftyJSON
 typealias ServiceResponse = (Response) -> Void
 
 class JSONModel: NSObject {
+    
     static let sharedInstance = JSONModel()
     
     var baseURL = "https://api.weather.com/v3/location/point?geocode=37.556111,126.91&language=en&format=json&apiKey=3d498bd0777076fb2aa967aa67114c7e"
-    
-    func getRandomUser(onCompletion: @escaping (Response) -> Void) {
-        makeHTTPGetRequest(path: baseURL, onCompletion: { responceObj in
-            onCompletion(responceObj)
-        })
-    }
     
     // MARK: Perform a GET Request
     func makeHTTPGetRequest(path: String, onCompletion: @escaping ServiceResponse) {
@@ -38,6 +33,11 @@ class JSONModel: NSObject {
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
             let executionTime = CFAbsoluteTimeGetCurrent() - start
             
+            if response == nil {
+                let nc = NotificationCenter.default
+                nc.post(name: Notification.Name("invalid url"), object: nil)
+                return
+            }
             let httpResponse = response as! HTTPURLResponse
             //print("error \(httpResponse.statusCode)")
             if let jsonData = data {
@@ -87,14 +87,13 @@ class JSONModel: NSObject {
             // Create your personal error
             let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpURLResponse:HTTPURLResponse(),error:nil)
             onCompletion(responceObj)
-
         }
     }
 }
+
 class Response {
     var jsonData: Any
     var executionTime: CFTimeInterval
-    //var httpStatusCode: NSInteger
     var httpURLResponse : HTTPURLResponse
     var error: Any?
 

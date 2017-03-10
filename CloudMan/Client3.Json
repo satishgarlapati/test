@@ -1,0 +1,33 @@
+{
+    "urlArray":[{
+            "urlID":"1",
+            "urlName":"Microsoft",
+            "url":"https://www.microsoft.com"
+        },
+        {
+            "urlID":"2",
+            "urlName":"Bestbuy",
+            "url":"http://www.bestbuy.com"
+        },
+        {
+            "urlID":"3",
+            "urlName":"Apple",
+            "url":"http://www.apple.com"
+        },
+        {
+            "urlID":"4",
+            "urlName":"Costco",
+            "url":"https://www.costco.com"
+        },
+        {
+            "urlID":"5",
+            "urlName":"Staples",
+            "url":"http://www.staples.com"
+        },
+        {
+            "urlID":"6",
+            "urlName":"Home Depot",
+            "url":"http://www.homedepot.com"
+        }
+    ]
+}

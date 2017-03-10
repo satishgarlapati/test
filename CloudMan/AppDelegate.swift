@@ -16,10 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        let line = "hello balaji how are u"
-        let result = line.range(of: "how are u")
-        print("Result Index: \(result)")
         // Override point for customization after application launch.
         return true
     }

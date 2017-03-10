@@ -35,6 +35,7 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
     
     var myResponseObj : Response?
     @IBOutlet weak var openWebBtnHeight: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,22 +48,18 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
         segmentControl.selectedSegmentIndex = 0
         headersTblView.isHidden = true
         showOrHideOpenWebButton(isShow: false)
-        self.textField.text = "http://www.gmail.com"
-
-        
+        self.textField.text = "http://"
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    func validateUrl (urlString: String?) -> Bool {
-        let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+"
-        return NSPredicate(format: "SELF MATCHES %@", urlRegEx).evaluate(with: urlString)
-    }
+    
     @IBAction func showApiInWebView(_ sender: UIButton) {
         
         self.performSegue(withIdentifier: "webviewController", sender:self)
         
     }
+    
     @IBAction func onSegmentSelection(_ sender: UISegmentedControl) {
         
         switch sender.selectedSegmentIndex {
@@ -79,38 +76,35 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
             headersTblView .reloadData()
         default: break
         }
-        
     }
+    
     @IBAction func getTheDetailsBtn(_ sender: Any) {
         self.view.endEditing(true)
-        //self.viResponse.isHidden = true
-
-//        if (textField.text?.characters.count)! > 0
-//        {
-//            if  validateUrl(urlString: textField.text) == false {
-//                showAlertViewController()
-//                return
-//            }
-//        }
+        
+        if (textField.text?.characters.count)! > 0
+        {
+            if validateUrl(string: textField.text) == false{
+                showAlertViewController()
+                return
+            }
+        }
         
         JSONModel.sharedInstance.makeHTTPGetRequest(path: textField.text!, onCompletion: { (responseInfo) in
-            
             self.updateUIBasedOnResponse(responceObj: responseInfo)
- 
         })
-
-        /*
-        JSONModel.sharedInstance.getRandomUser { (data,executionTime, err) in
-            let jsonData: NSData = data as! NSData
-            print("The size is length:\(jsonData.length)")
-            print("The size is KB    :\(Double(jsonData.length)/1024.00)")
-            print("The Time is       :\(CGFloat(executionTime))")
-            
-            let json:JSON = JSON(data: jsonData as Data)
-            print("The content is :\(json)")
-        }*/
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(showAlertViewController), name: Notification.Name("invalid url"), object: nil)
     }
+    
+    func validateUrl(string: String?) -> Bool {
+        guard let urlString = string else {return false}
+        guard let url = NSURL(string: urlString) else {return false}
+        if !UIApplication.shared.canOpenURL(url as URL) {return false}
+        
+        let regEx = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", argumentArray:[regEx])
+        return predicate.evaluate(with: string)
+    }
+    
     func showAlertViewController() -> Void {
         let alert = UIAlertController(title: "CloudMan", message: "Inavalid URL Format", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -159,22 +153,22 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
                 }
                 self.bodyTextView.text = String(format: "%@ %@", RESPONSE_TEXT, str)
                 weakSelf?.showOrHideOpenWebButton(isShow: true)
-                
             }
-            
         }
     }
+    
     func showOrHideOpenWebButton(isShow:Bool) -> Void {
         if isShow {
             openWebviewBtn.alpha = 1
-            //self.openWebBtnHeight.constant = 40;
+            openWebviewBtn.isHidden = false
         }else
         {
-            //self.openWebBtnHeight.constant = 0;
             openWebviewBtn.alpha = 0.6
+            openWebviewBtn.isHidden = true
         }
         openWebviewBtn.isEnabled = isShow;
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is webviewController {
             let dVC = segue.destination as! webviewController
@@ -184,11 +178,7 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
             dVC.delegate = self
         }
     }
-    func canOpenURL(url: String ) -> Bool {
-        let urlRegEx = "^http(?:s)?://(?:w{3}\\.)?(?!w{3}\\.)(?:[\\p{L}a-zA-Z0-9\\-]+\\.){1,}(?:[\\p{L}a-zA-Z]{2,})/(?:\\S*)?$"
-        let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegEx)
-        return urlTest.evaluate(with: url)
-    }
+    
     func createAttrString(string:String, boldStr:String) -> NSMutableAttributedString {
         
         let attrString = NSMutableAttributedString(string: string);
@@ -196,22 +186,30 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
         attrString.addAttributes(myAttributes, range: NSMakeRange(0, boldStr.characters.count))
         return attrString
     }
+    
     func goForSelectedAPI(_ apiURL: String) {
         textField.text = apiURL
         showOrHideOpenWebButton(isShow: false)
 
     }
-    //Mark -- TextView Delegate
-    func textFieldDidBeginEditing(_ textField: UITextField)
-    {
-        showOrHideOpenWebButton(isShow: false)
+    
+    //Mark -- TextView Delegate    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let  char = string.cString(using: String.Encoding.utf8)!
+        let isBackSpace = strcmp(char, "\\b")
+        
+        if (isBackSpace == -92) {
+            showOrHideOpenWebButton(isShow: false)
+        }
+        return true
     }
+    
     //Pragma Mark:- TableViewDataSourceAnd Delgate
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if myResponseObj == nil{
             return 0
         }
@@ -221,13 +219,12 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
         return (myResponseObj?.httpURLResponse.allHeaderFields.count)!
 
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for:indexPath)
         let headerFieldsDict = myResponseObj?.httpURLResponse.allHeaderFields as? Dictionary<String, AnyObject>
         let contentKey = Array(headerFieldsDict!.keys)[indexPath.row]

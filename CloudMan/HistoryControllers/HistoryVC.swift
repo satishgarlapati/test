@@ -2,7 +2,7 @@
 //  HistoryVC.swift
 //  CloudMan
 //
-//  Created by Geetha Balu on 08/12/16.
+//  Created by Satish Garlapati on 12/8/16.
 //  Copyright © 2016 Satish Garlapati. All rights reserved.
 //
 
@@ -13,25 +13,63 @@ protocol HistoryApiSelectionDelegate {
     func goForSelectedAPI(_ apiURL: String)
 }
 
-class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate {
     
     @IBOutlet weak var viTblHistory: UITableView!
     var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
 
     var delegate : HistoryApiSelectionDelegate?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //let strava = UIBarButtonItem(title: "Strava", style: .done, target: self, action: #selector(stravaBtnClicked))
-        //self.navigationItem.rightBarButtonItem = strava
-        //self.title = "Home"
         viTblHistory.tableFooterView = UIView()
         viTblHistory.dataSource = self
+        viTblHistory.delegate = self
         do {
             try fetchedResultsController.performFetch()
         } catch {
             print("An error occurred")
+        }
+    }
+    
+    @IBAction func getFromCloudBtnTapped(_ sender: Any) {
+        let menu = UIAlertController(title: "Select From", message: nil, preferredStyle: .actionSheet)
+        let option1 = UIAlertAction(title: "Client 1", style: .default) { (UIAlertAction) in
+            self.getClientDetails(clientName: "Client1")
+        }
+        let option2 = UIAlertAction(title: "Client 2", style: .default) { (UIAlertAction) in
+            self.getClientDetails(clientName: "Client2")
+        }
+        let option3 = UIAlertAction(title: "Client 3", style: .default) { (UIAlertAction) in
+            self.getClientDetails(clientName: "Client3")
+        }
+        menu.addAction(option1)
+        menu.addAction(option2)
+        menu.addAction(option3)
+        self.present(menu, animated: true, completion: nil)
+        //self.viTblHistory.reloadData()
+    }
+    
+    func getClientDetails(clientName: String) {
+        var urls = [String]()
+        let filePath = Bundle.main.path(forResource: clientName, ofType: "Json")
+        let JSONData: NSData? = NSData(contentsOfFile: filePath!)
+        do {
+            let JSONArray = try JSONSerialization.jsonObject(with: JSONData! as Data, options:JSONSerialization.ReadingOptions(rawValue: 0)) as! [String:Any]
+            let urlDetails = JSONArray["urlArray"] as! [[String:Any]]
+            
+            for url in urlDetails{
+                if let urlString = url["url"] as? String {
+                        urls.append(urlString)
+                }
+            }
+            for i in 0..<urls.count{
+                DBManager.sharedInstance.insertOrUpdateAPI(apiURL: urls[i], isSuccess: false)
+            }
+            updateTableviewAfterInsertionOrDelete()
+        }
+        catch let JSONError as NSError {
+            print("\(JSONError)")
         }
     }
     
@@ -57,45 +95,46 @@ class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NS
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
-
         if let delegate = delegate {
             let apiHistory = fetchedResultsController.object(at:indexPath)
             delegate.goForSelectedAPI(apiHistory.apiURL!)
             _ = navigationController?.popViewController(animated: true)
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for:indexPath)
         let apiHistory = fetchedResultsController.object(at:indexPath)
-        
-        cell.textLabel?.text = apiHistory.apiURL
-        cell.detailTextLabel?.text = apiHistory.isSuccess ? "Success" : "Failed"
+            cell.textLabel?.text = apiHistory.apiURL
+            cell.detailTextLabel?.text = apiHistory.isSuccess ? "Success" : "Failed"
         return cell
     }
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            
             let apiHistory = fetchedResultsController.object(at:indexPath)
             let isDeleted = DBManager.sharedInstance.deleteRecordFromAPIHistory(objectToDelete: apiHistory)
             if isDeleted{
-                fetchedResultsController.fetchRequest.predicate = nil;
-                do {
-                    try fetchedResultsController.performFetch()
-                    viTblHistory.reloadData()
-                } catch {
-                    print("An error occurred")
-                }
+                updateTableviewAfterInsertionOrDelete()
             }
-            
-           
         }
+    }
+    
+    func updateTableviewAfterInsertionOrDelete()
+    {
+        fetchedResultsController.fetchRequest.predicate = nil;
+        do {
+            try fetchedResultsController.performFetch()
+            viTblHistory.reloadData()
+        } catch {
+            print("An error occurred")
+        }
+
     }
 }
 /*
