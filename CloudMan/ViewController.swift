@@ -44,6 +44,7 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
         headersTblView.tableFooterView = UIView()
         textField.delegate = self;
 
+        bodyTextView.isEditable = false
         openWebviewBtn.isEnabled = false;
         segmentControl.selectedSegmentIndex = 0
         headersTblView.isHidden = true
@@ -55,13 +56,10 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
     }
     
     @IBAction func showApiInWebView(_ sender: UIButton) {
-        
         self.performSegue(withIdentifier: "webviewController", sender:self)
-        
     }
     
     @IBAction func onSegmentSelection(_ sender: UISegmentedControl) {
-        
         switch sender.selectedSegmentIndex {
         case 0:
             bodyTextView.isHidden = false
@@ -81,8 +79,7 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
     @IBAction func getTheDetailsBtn(_ sender: Any) {
         self.view.endEditing(true)
         
-        if (textField.text?.characters.count)! > 0
-        {
+        if (textField.text?.characters.count)! > 0{
             if validateUrl(string: textField.text) == false{
                 showAlertViewController()
                 return

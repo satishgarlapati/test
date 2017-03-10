@@ -47,7 +47,6 @@ class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NS
         menu.addAction(option2)
         menu.addAction(option3)
         self.present(menu, animated: true, completion: nil)
-        //self.viTblHistory.reloadData()
     }
     
     func getClientDetails(clientName: String) {
@@ -64,7 +63,7 @@ class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NS
                 }
             }
             for i in 0..<urls.count{
-                DBManager.sharedInstance.insertOrUpdateAPI(apiURL: urls[i], isSuccess: false)
+                DBManager.sharedInstance.insertOrUpdateAPI(apiURL: urls[i], isSuccess: true)
             }
             updateTableviewAfterInsertionOrDelete()
         }
@@ -85,14 +84,15 @@ class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NS
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if let sections = fetchedResultsController.sections {
             let currentSection = sections[section]
             return currentSection.numberOfObjects
         }
         return 0
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         tableView.deselectRow(at: indexPath, animated: true)
         if let delegate = delegate {
@@ -102,8 +102,7 @@ class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NS
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for:indexPath)
         let apiHistory = fetchedResultsController.object(at:indexPath)
             cell.textLabel?.text = apiHistory.apiURL
@@ -134,7 +133,6 @@ class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NS
         } catch {
             print("An error occurred")
         }
-
     }
 }
 /*
