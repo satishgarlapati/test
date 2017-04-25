@@ -16,7 +16,7 @@ class webviewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "API Info"
-        webview.loadRequest(NSURLRequest(url: NSURL(string: apiURL) as! URL) as URLRequest)
+        webview.loadRequest(NSURLRequest(url: NSURL(string: apiURL)! as URL) as URLRequest)
         // Do any additional setup after loading the view.
     }
 }

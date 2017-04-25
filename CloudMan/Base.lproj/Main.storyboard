@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="N62-xn-6pu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="N62-xn-6pu">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -134,8 +134,7 @@
                                 </constraints>
                                 <segments>
                                     <segment title="Body"/>
-                                    <segment title="Headers"/>
-                                    <segment title="Cookies"/>
+                                    <segment title="Headers/Cookies"/>
                                 </segments>
                                 <connections>
                                     <action selector="onSegmentSelection:" destination="BYZ-38-t0r" eventType="valueChanged" id="deV-Ym-src"/>
@@ -206,7 +205,13 @@
                             <constraint firstItem="X19-hk-Eyw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="zNc-Pg-NXU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="CloudMan" id="B9q-8k-ZPx"/>
+                    <navigationItem key="navigationItem" title="CloudMan" id="B9q-8k-ZPx">
+                        <barButtonItem key="rightBarButtonItem" title="About" id="sdA-Fv-ULZ">
+                            <connections>
+                                <action selector="aboutCloudManBtnTapped:" destination="BYZ-38-t0r" id="5bf-dS-ViO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="bodyTextView" destination="TPU-ef-1KF" id="E8N-LL-FVk"/>
@@ -221,11 +226,92 @@
                         <outlet property="textField" destination="X19-hk-Eyw" id="AOj-Af-W1f"/>
                         <outlet property="viResponse" destination="UYb-qG-wFz" id="O9d-Ot-Vb7"/>
                         <segue destination="T8S-cj-wYf" kind="show" identifier="webviewController" id="Y4t-aO-Rsy"/>
+                        <segue destination="ZPe-3y-tdk" kind="show" identifier="About" id="5uh-6I-3Ps"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="397.60000000000002" y="-161.46926536731635"/>
+            <point key="canvasLocation" x="265" y="-156"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="IXu-Zv-SHR">
+            <objects>
+                <viewController id="ZPe-3y-tdk" customClass="AboutViewController" customModule="CloudMan" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XKJ-li-DqF"/>
+                        <viewControllerLayoutGuide type="bottom" id="dgn-To-Cg5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GF0-3G-2Me">
+                        <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="qgK-cc-1bj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CloudMan " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWe-66-lTS">
+                                <rect key="frame" x="100" y="70" width="175" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="175" id="BvQ-1m-jr4"/>
+                                    <constraint firstAttribute="height" constant="50" id="tvT-hx-1eK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                <color key="textColor" red="1" green="0.96672917826124138" blue="0.51591928837517154" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cloudman gives a easy way to test the client API functionality without the help of a desktop." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gD0-H4-sZP">
+                                <rect key="frame" x="41" y="155.5" width="293" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="WOu-Eu-tDM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.20171923767331201" green="1" blue="0.25930413543156516" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make the APIs Run" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znf-GK-Bpg">
+                                <rect key="frame" x="164" y="120" width="160" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="Nuh-aD-Gr4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                <color key="textColor" red="0.87531925831646085" green="1" blue="0.91479700857087431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqB-IQ-7FM">
+                                <rect key="frame" x="112.5" y="245.5" width="150" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="ChA-p7-SGH"/>
+                                    <constraint firstAttribute="height" constant="25" id="rGE-c8-u8y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cqB-IQ-7FM" firstAttribute="top" secondItem="gD0-H4-sZP" secondAttribute="bottom" constant="10" id="0Sw-q9-IZT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gD0-H4-sZP" secondAttribute="trailing" constant="25" id="3Zb-2h-XHa"/>
+                            <constraint firstItem="qgK-cc-1bj" firstAttribute="top" secondItem="XKJ-li-DqF" secondAttribute="bottom" id="9Pv-Zj-IW4"/>
+                            <constraint firstItem="gD0-H4-sZP" firstAttribute="top" secondItem="znf-GK-Bpg" secondAttribute="bottom" constant="15" id="CvN-mE-6NA"/>
+                            <constraint firstItem="dgn-To-Cg5" firstAttribute="top" secondItem="qgK-cc-1bj" secondAttribute="bottom" id="Ism-0o-7EJ"/>
+                            <constraint firstItem="qgK-cc-1bj" firstAttribute="leading" secondItem="GF0-3G-2Me" secondAttribute="leading" id="TQP-zZ-qCp"/>
+                            <constraint firstItem="nWe-66-lTS" firstAttribute="top" secondItem="XKJ-li-DqF" secondAttribute="bottom" constant="70" id="a6C-6U-pJ9"/>
+                            <constraint firstAttribute="trailing" secondItem="qgK-cc-1bj" secondAttribute="trailing" id="h5c-oC-SQG"/>
+                            <constraint firstItem="gD0-H4-sZP" firstAttribute="leading" secondItem="GF0-3G-2Me" secondAttribute="leadingMargin" constant="25" id="pSm-QD-mZ6"/>
+                            <constraint firstItem="nWe-66-lTS" firstAttribute="centerX" secondItem="GF0-3G-2Me" secondAttribute="centerX" id="pdN-Eh-iNp"/>
+                            <constraint firstItem="cqB-IQ-7FM" firstAttribute="centerX" secondItem="GF0-3G-2Me" secondAttribute="centerX" id="qbj-KB-Sab"/>
+                            <constraint firstItem="znf-GK-Bpg" firstAttribute="top" secondItem="nWe-66-lTS" secondAttribute="bottom" id="rZf-WH-D6Y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="znf-GK-Bpg" secondAttribute="trailing" constant="35" id="soK-X8-9OV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="versionLbl" destination="cqB-IQ-7FM" id="gUj-av-1mh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S8M-HN-kD4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="264.80000000000001" y="521.28935532233891"/>
         </scene>
         <!--API History-->
         <scene sceneID="Eug-4a-cxd">
@@ -247,18 +333,18 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7VX-Ql-T57" id="kZQ-KM-KRp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mld-LP-P6r">
-                                                    <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eFK-fI-By3">
-                                                    <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -335,4 +421,7 @@
             <point key="canvasLocation" x="1165.5999999999999" y="187.55622188905548"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="image" width="1024" height="836"/>
+    </resources>
 </document>

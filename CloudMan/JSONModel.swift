@@ -46,7 +46,7 @@ class JSONModel: NSObject {
                 onCompletion(responceObj)
                 //
             } else {
-                let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpURLResponse: httpResponse,error: error as! NSError)
+                let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpURLResponse: httpResponse,error: error! as NSError)
                 DBManager.sharedInstance.insertOrUpdateAPI(apiURL: urlStr, isSuccess: false)
                 onCompletion(responceObj)
             }
@@ -73,10 +73,10 @@ class JSONModel: NSObject {
                 let httpResponse = response as! HTTPURLResponse
                 if let jsonData = data {
                     //let json:JSON = JSON(data: jsonData)
-                    let responceObj = Response(jsonData: jsonData,executionTime: executionTime,httpURLResponse: httpResponse,error: error as! NSError)
+                    let responceObj = Response(jsonData: jsonData,executionTime: executionTime,httpURLResponse: httpResponse,error: error! as NSError)
                     onCompletion(responceObj)
                 } else {
-                    let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpURLResponse: httpResponse,error: error as! NSError)
+                    let responceObj = Response(jsonData: JSON.null,executionTime: executionTime,httpURLResponse: httpResponse,error: error! as NSError)
                     onCompletion(responceObj)
 
                 }

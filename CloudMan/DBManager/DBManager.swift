@@ -68,6 +68,19 @@ class DBManager: NSObject {
             return false
         }
     }
+    
+    func deleteAll(){
+        let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
+        let fetchRequest: NSFetchRequest<APIHistory> = APIHistory.fetchRequest()
+        let delAll = NSBatchDeleteRequest(fetchRequest: fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
+        do {
+            try context.execute(delAll)
+        }
+        catch {
+            print(error)
+        }
+    }
+    
      /*
     func getTheRaceCount() -> Int {
         let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext

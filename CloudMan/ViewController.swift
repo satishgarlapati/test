@@ -43,7 +43,7 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
         updateUIBasedOnResponse(responceObj: myResponseObj!)
         headersTblView.tableFooterView = UIView()
         textField.delegate = self;
-
+        
         bodyTextView.isEditable = false
         openWebviewBtn.isEnabled = false;
         segmentControl.selectedSegmentIndex = 0
@@ -59,6 +59,12 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
         self.performSegue(withIdentifier: "webviewController", sender:self)
     }
     
+    @IBAction func aboutCloudManBtnTapped(_ sender: Any) {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+        self.performSegue(withIdentifier: "About", sender: version)
+    }
+    
+    
     @IBAction func onSegmentSelection(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -68,10 +74,10 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
             bodyTextView.isHidden = true
             headersTblView.isHidden = false
             headersTblView .reloadData()
-        case 2:
-            bodyTextView.isHidden = true
-            headersTblView.isHidden = false
-            headersTblView .reloadData()
+//        case 2:
+//            bodyTextView.isHidden = true
+//            headersTblView.isHidden = false
+//            headersTblView .reloadData()
         default: break
         }
     }
@@ -173,6 +179,9 @@ class ViewController: UIViewController , UITextFieldDelegate, HistoryApiSelectio
         }else if segue.destination is HistoryVC {
             let dVC = segue.destination as! HistoryVC
             dVC.delegate = self
+        }else if segue.destination is AboutViewController {
+            let dVC = segue.destination as! AboutViewController
+            dVC.receivedVersion = sender as! String
         }
     }
     

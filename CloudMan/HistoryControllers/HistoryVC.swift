@@ -33,19 +33,22 @@ class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NS
     }
     
     @IBAction func getFromCloudBtnTapped(_ sender: Any) {
-        let menu = UIAlertController(title: "Select From", message: nil, preferredStyle: .actionSheet)
-        let option1 = UIAlertAction(title: "Client 1", style: .default) { (UIAlertAction) in
-            self.getClientDetails(clientName: "Client1")
+        let menu = UIAlertController(title: "Please enter your Client ID", message: "Your entry is case sensitive", preferredStyle: .alert)
+        menu.addTextField { (UITextField) in
+            UITextField.text = menu.textFields?.first?.text
         }
-        let option2 = UIAlertAction(title: "Client 2", style: .default) { (UIAlertAction) in
-            self.getClientDetails(clientName: "Client2")
+        let option1 = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
+            if menu.textFields?.first?.text == "Client1" ||
+                menu.textFields?.first?.text == "Client2" ||
+                menu.textFields?.first?.text == "Client3" {
+                self.getClientDetails(clientName:(menu.textFields?.first?.text)!)
+            }
         }
-        let option3 = UIAlertAction(title: "Client 3", style: .default) { (UIAlertAction) in
-            self.getClientDetails(clientName: "Client3")
+        let option2 = UIAlertAction(title: "Cancel", style: .cancel) { (UIAlertAction) in
         }
+
         menu.addAction(option1)
         menu.addAction(option2)
-        menu.addAction(option3)
         self.present(menu, animated: true, completion: nil)
     }
     
@@ -54,6 +57,7 @@ class HistoryVC: UIViewController,UITableViewDelegate, UITableViewDataSource, NS
         let filePath = Bundle.main.path(forResource: clientName, ofType: "Json")
         let JSONData: NSData? = NSData(contentsOfFile: filePath!)
         do {
+            DBManager.sharedInstance.deleteAll()
             let JSONArray = try JSONSerialization.jsonObject(with: JSONData! as Data, options:JSONSerialization.ReadingOptions(rawValue: 0)) as! [String:Any]
             let urlDetails = JSONArray["urlArray"] as! [[String:Any]]
             
